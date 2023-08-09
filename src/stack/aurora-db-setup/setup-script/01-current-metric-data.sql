@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS current_metric_data (
+  queue_arn VARCHAR(255) NOT NULL,
+  queue_name VARCHAR(255) NOT NULL,
+  agents_online INT,
+  agents_available INT,
+  agents_on_call INT,
+  agents_staffed INT,
+  agents_acw INT,
+  agents_npt INT,
+  agents_error INT,
+  agents_on_contact INT,
+  in_queue INT,
+  oldest_contact INT,
+  scheduled INT,
+  slots_active INT,
+  slots_available INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  last_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (queue_arn)
+);
