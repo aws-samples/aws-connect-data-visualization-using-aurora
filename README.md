@@ -5,6 +5,8 @@
 1. [Solution Architecture](#SolutionArchitecture)
 1. [Deployment Steps Overview](#DeploymentStepsOverview)
 1. [Solution Testing](#SolutionTesting)
+1. [Data Visualization of the Metrics](#DataVisualizationMetrics)
+## 
 
 ## Overview
 [Amazon Connect](https://aws.amazon.com/connect/) provides built-in [reports](https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-metrics.html), however some customers need more flexibility or need to use a Business Intelligence (BI) tool to visualize Amazon Connect data. Customers may also like to use custom calculations that are defined by their business which are not available in the out-of-the-box Amazon Connect Reports. In this workshop, you will learn how to use Amazon Connect APIs along with other Amazon services like [Amazon Aurora](https://aws.amazon.com/rds/aurora/) and [Amazon QuickSight](https://aws.amazon.com/quicksight/) to store Contact Center data and create visualization.
@@ -279,3 +281,9 @@ git clone https://github.com/aws-samples/aws-connect-data-visualization-using-au
 1. To ensure the **connect_metadata** table is getting updated. 
     - Create two new [ Amazon Connect Queues](https://docs.aws.amazon.com/connect/latest/adminguide/create-queue.html) from Amazon Connect Console.
     - Invoke the testing URL after 15 minutes, to ensure the rowCount value has increased by 2.  
+
+<a id="DataVisualizationMetrics"></a>
+## Data Visualization of the Metrics
+In this section we will configure Amazon QuickSight to visualize historical metrics data.We will also discuss briefly, how you can visualize real time metrics data.  To visualize Amazon Connect historical API Data we will follow below steps:
+1. Setup QuickSight and integrate it with Aurora Serverless v2.
+1. Build visualization for historical data using QuickSight. The Workshop walk you through on how to create a simple QuickSight view. However, you can create complex and detailed views based on your contact center requirements.
