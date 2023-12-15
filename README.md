@@ -2,7 +2,7 @@
 
 # Table of Contents
 1. [Overview](#Overview)
-1. [Solution Architecture](#Solution-Architecture)
+1. [Solution Architecture](#SolutionArchitecture)
 
 ## Overview
 [Amazon Connect](https://aws.amazon.com/connect/) provides built-in [reports](https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-metrics.html), however some customers need more flexibility or need to use a Business Intelligence (BI) tool to visualize Amazon Connect data. Customers may also like to use custom calculations that are defined by their business which are not available in the out-of-the-box Amazon Connect Reports. In this workshop, you will learn how to use Amazon Connect APIs along with other Amazon services like [Amazon Aurora](https://aws.amazon.com/rds/aurora/) and [Amazon QuickSight](https://aws.amazon.com/quicksight/) to store Contact Center data and create visualization.
@@ -62,8 +62,7 @@ This workshop can only be run in regions that support Amazon Connect
 ### Out of Scope
 Any integration with Third Party BI Tool or web interfaces to visualize the data are not discussed as part of this workshop
 
-<div id="Solution-Architecture" />
-## Solution Architecture
+## Solution Architecture <a id="SolutionArchitecture"></a>
 - The solution utilizes two types of data:
   - **Metadata**    : Data describes various contact center configuration. 
   - **Metric Data** : Real time and historical data for your contact center metrics.    
