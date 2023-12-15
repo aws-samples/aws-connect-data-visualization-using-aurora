@@ -341,7 +341,7 @@ In this section we will configure Amazon QuickSight to visualize historical metr
   ![QuickSight Region](/images/quicksight-region.jpg) 
 1. Click on your profile at top right corner and choose **Manage Quicksight**. From the side menu choose **Manage VPC connections** and click on **Add VPC Connection**. Please note that you should be a QuickSight administrator to be able to add a VPC. 
 1. In the VPC connection name enter a name e.g. *Connect-workshop-vpc*.
-1. Open another window for AWS Management Console, go to AWS Systems Manager > Parameter store , and retrieve the value of VPC ID from /CONNECT_WORKSHOP/VPC/ID system parameter 
+1. Open another window for AWS Management Console, go to AWS Systems Manager > Parameter store , and retrieve the value of VPC ID from /CONNECT_WORKSHOP/VPC/ID system parameter.
     ![QuickSight System Parameters](/images/System-Params-QuickSight.jpg) 
 1. Similarly, extract information for Subnets, Security Group created for QuickSight from AWS System Manager Parameter Store and add the VPC connection.You may leave the optional DNS resolver endpoints to blank.
    ![QuickSight Add VPC](/images/quicksight-add-vpc.jpg) 
