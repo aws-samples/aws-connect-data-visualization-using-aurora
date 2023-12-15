@@ -288,7 +288,7 @@ In this section we will configure Amazon QuickSight to visualize historical metr
 1. Setup QuickSight and integrate it with Aurora Serverless v2.
 1. Build visualization for historical data using QuickSight. The Workshop walk you through on how to create a simple QuickSight view. However, you can create complex and detailed views based on your contact center requirements.
 
-### Set up Quicksight
+### Setup Quicksight
 1. Open AWS Management Console and Launch Amazon Identity and Access Management (IAM).
 1. From the left hand menu under **Access Management** choose **Policies**.
 1. On the left hand side, click on **Create Policy** button.
