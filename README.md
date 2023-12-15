@@ -314,7 +314,7 @@ In this section we will configure Amazon QuickSight to visualize historical metr
 	```
  
 1. Give *workshop-quicksight-vpc-policy* as the name  in the Policy Name field.
-1. Once the policy is created , from the left hand menu under **Access Management** select **Roles**
+1. Once the policy is created from the left hand menu under **Access Management** select **Roles**
 1. Click on **Create Role** at the top right corner.
 1. From the list of options select **Custom Trust Policy**. Paste the following statements in the editor.
 
