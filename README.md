@@ -1,14 +1,14 @@
-#Visualize Amazon Connect API Data Using Aurora and Quicksight Workshop
+# Visualize Amazon Connect API Data Using Aurora and Quicksight Workshop
 
-##Overview
+## Overview
 [Amazon Connect](https://aws.amazon.com/connect/) provides built-in [reports](https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-metrics.html), however some customers need more flexibility or need to use a Business Intelligence (BI) tool to visualize Amazon Connect data. Customers may also like to use custom calculations that are defined by their business which are not available in the out-of-the-box Amazon Connect Reports. In this workshop, you will learn how to use Amazon Connect APIs along with other Amazon services like [Amazon Aurora](https://aws.amazon.com/rds/aurora/), and [Amazon QuickSight](https://aws.amazon.com/quicksight/) to store Contact Center data and create visualization.
 
 This workshop uses Amazon Connect APIs as data source to generate meaningful contact center statistics.
 
-###Intended Audience
+### Intended Audience
 This workshop is designed for Contact Center Developers/Administrators/Analysts who want to build dashboards and reports for analyzing contact center performance.
 
-###Solution Approach
+### Solution Approach
 In this workshop, you will learn how to use data from Amazon Connect APIs along with other Amazon services like [Amazon Aurora](https://aws.amazon.com/rds/aurora/) and [Amazon QuickSight](https://aws.amazon.com/quicksight/) to store Contact Center data and create visualization. This data can then be used by the external BI tools to create advanced visualizations.
 1. Retrieve real-time and historical data from Amazon Connect instance using the Amazon Connect [APIs](https://docs.aws.amazon.com/connect/latest/APIReference/Welcome.html).
 2. [Amazon Event Bridge](https://aws.amazon.com/eventbridge/) rule along with [AWS Step Function](https://aws.amazon.com/step-functions/) periodically invokes the Amazon Connect APIs and store the results in an [Amazon Aurora Database](https://aws.amazon.com/rds/aurora/).
@@ -46,10 +46,10 @@ In this workshop, you will learn how to use data from Amazon Connect APIs along 
     - [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html)
     - [Git Client](https://git-scm.com/downloads)
 
-###Estimated time required to complete the workshop
+### Estimated time required to complete the workshop
 5 hours 
 
-###Costs
+### Costs
 The estimated cost is $3 or $25 (Amazon QuickSight Enterprise Edition  has a free trial for authors. You will need to pay for Amazon QuickSight if your trial has expired).
 
 ### AWS Regions
