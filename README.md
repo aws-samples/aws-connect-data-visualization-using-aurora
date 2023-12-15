@@ -62,7 +62,7 @@ Any integration with Third Party BI Tool or web interfaces to visualize the data
 - The solution utilizes two types of data:
   - **Metadata**    : Data describes various contact center configuration. 
   - **Metric Data** : Real time and historical data for your contact center metrics.    
-![Architecture](/static/Architecture.jpg)
+![Architecture](/images/Architecture.jpg)
 
 ### Solution Flow
 1. An [Amazon Event Bridge](https://aws.amazon.com/eventbridge/) rule runs every 15 minutes to invoke an AWS Lambda function.
