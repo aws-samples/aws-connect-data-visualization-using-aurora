@@ -258,10 +258,10 @@ git clone https://github.com/aws-samples/aws-connect-data-visualization-using-au
 
 <a id="SolutionTesting"></a>
 ## Solution Testing
-- Make test calls using the phone number claimed during contact center setup.
-- Ensure the user is logged into [Contact Control Panel](https://docs.aws.amazon.com/connect/latest/adminguide/launch-ccp.html) to receive calls
-- Ensure you are able to see the data in out of the box Amazon Connect real time reports
-- Follow below steps to check the data is getting inserted into Amazon Aurora.
+1. Make test calls using the phone number claimed during contact center setup.
+1. Ensure the user is logged into [Contact Control Panel](https://docs.aws.amazon.com/connect/latest/adminguide/launch-ccp.html) to receive calls
+1. Ensure you are able to see the data in out of the box Amazon Connect real time reports
+1. Follow below steps to check the data is getting inserted into Amazon Aurora.
     - Launch Amazon API Gateway from AWS management console
     - In the *find API* search bar type *CheckDataloadApi*
     - Select *CheckDataloadApi--> Stages--> prod*
@@ -272,11 +272,11 @@ git clone https://github.com/aws-samples/aws-connect-data-visualization-using-au
         - Name of the table
         - Row count
         - Last updated timestamp
-- [Add a new agent](https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html) and login to Contact control panel using new agent's credential.
+1. [Add a new agent](https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html) and login to Contact control panel using new agent's credential.
   * Invoke the testing URL to ensure  **current_user_data** table is getting updated. 
-- Continue to make test calls on the phone number claimed and validate that **current_metric_data** and **historical_metric_data** are getting updated.
-- For **current_metric_data** the number of rows may remain same if agent is logging-on to the same queue, but you should see an updated lastUpdated timestamp for **current_user_data** ,
+1. Continue to make test calls on the phone number claimed and validate that **current_metric_data** and **historical_metric_data** are getting updated.
+1. For **current_metric_data** the number of rows may remain same if agent is logging-on to the same queue, but you should see an updated lastUpdated timestamp for **current_user_data** ,
 **current_metric_data** and **historical_metric_data**.
-- To ensure the **connect_metadata** table is getting updated. 
+1. To ensure the **connect_metadata** table is getting updated. 
   * Create two new [ Amazon Connect Queues](https://docs.aws.amazon.com/connect/latest/adminguide/create-queue.html) from Amazon Connect Console.
   * Invoke the testing URL after 15 minutes, to ensure the rowCount value has increased by 2.  
