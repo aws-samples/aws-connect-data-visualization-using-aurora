@@ -287,3 +287,59 @@ git clone https://github.com/aws-samples/aws-connect-data-visualization-using-au
 In this section we will configure Amazon QuickSight to visualize historical metrics data.We will also discuss briefly, how you can visualize real time metrics data.  To visualize Amazon Connect historical API Data we will follow below steps:
 1. Setup QuickSight and integrate it with Aurora Serverless v2.
 1. Build visualization for historical data using QuickSight. The Workshop walk you through on how to create a simple QuickSight view. However, you can create complex and detailed views based on your contact center requirements.
+
+### Set up Quicksight
+1. Open AWS Management Console and Launch Amazon Identity and Access Management (IAM).
+1. From the left hand menu under **Access Management** choose **Policies**.
+1. On the left hand side, click on **Create Policy** button.
+1. Choose the **JSON** at the top right and paste the following policy statement in the Policy Editor and Choose **Next**:
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:ModifyNetworkInterfaceAttribute",
+                "ec2:DeleteNetworkInterface",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeSecurityGroups"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+1. Give *workshop-quicksight-vpc-policy* as the name  in the Policy Name field.
+1. Once the policy is created , from the left hand menu under **Access Management** select **Roles**
+1. Click on **Create Role** at the top right corner.
+1. From the list of options select **Custom Trust Policy**. Paste the following statements in the editor.
+```
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Principal": {
+				"Service": "quicksight.amazonaws.com"
+			},
+			"Action": "sts:AssumeRole"
+		}
+	]
+}
+```
+    ![QuickSight Role](/static/quicksight-role.jpg) 
+1. Click on **Next**. In the Permission Policies attach the policy created in the above step  named *workshop-quicksight-vpc-policy*.
+1. Click on **Next**. In the Role Name field give *workshop-quicksight-exec-role* to create the QuickSight execution role.
+1. Launch Amazon QuickSight from AWS Management Console.  [Follow these steps](https://catalog.workshops.aws/quicksight/en-US/author-workshop/0-prerequisites) if you have not signed up for QuickSight.
+1. Select the QuickSight region same as the region you chose for the workshop.
+  ![QuickSight REgion](/static/quicksight-region.jpg) 
+1. Click on your profile at top right corner and choose **Manage Quicksight**. From the side menu choose **Manage VPC connections** and click on **Add VPC Connection**. Please note that you should be a QuickSight administrator to be able to add a VPC. 
+1. In the VPC connection name enter a name e.g. *Connect-workshop-vpc*.
+1. Open another window for AWS Management Console, go to AWS Systems Manager > Parameter store , and retrieve the value of VPC ID from /CONNECT_WORKSHOP/VPC/ID system parameter 
+    ![QuickSight System Parameters](/static/System-Params-QuickSight.jpg) 
+1. Similarly, extract information for Subnets, Security Group created for QuickSight from AWS System Manager Parameter Store and add the VPC connection.You may leave the optional DNS resolver endpoints to blank.
+   ![QuickSight Add VPC](/static/quicksight-add-vpc.jpg) 
+1. Before proceeding to the next steps ensure the VPC connection is in Available state as shown:
+    ![QuickSight Add VPC](/static/quicksight-vpc-status.jpg) 
