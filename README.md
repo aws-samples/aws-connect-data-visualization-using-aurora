@@ -218,3 +218,8 @@ Outputs:
         Description: A reference to the created Cloud9 environment
         Value: !Ref IDE
 ```
+### Launch Cloud 9
+Now, launch the new AWS Cloud9 instance:
+1. Select the AWS Cloud9 service
+1. Select the *Connect-API-Visualization* instance
+1. Select the *Open in Cloud9* IDE button
