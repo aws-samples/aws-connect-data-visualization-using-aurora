@@ -226,16 +226,16 @@ Now, launch the new AWS Cloud9 instance:
 
 ### Deploy Solution
 1. Open a new terminal in your Cloud 9 IDE
-1. `cd ~/environment/`
-1. Download the code from Git repository
+2. `cd ~/environment/`
+3. Download the code from Git repository
 ```
 git clone https://github.com/aws-samples/aws-connect-data-visualization-using-aurora.git
 ```
-1. Modify File
+4. Modify File
     - Retrieve your Amazon Connect Instance Id and ARN as shown [here](https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
     - Navigate to stack-main.ts file (*/src/stack/infra/stack-main.ts*) and edit it to have the correct Amazon Connect instance ID and instance ARN.
 
-    :::code{showCopyAction=true showLineNumbers=false language=typescript }
+    ```
     export class InfraStackMain extends Stack {
         constructor(scope: Construct, id: string, props?: StackProps) {
             super(scope, id, props);
@@ -243,16 +243,14 @@ git clone https://github.com/aws-samples/aws-connect-data-visualization-using-au
             const CONNECT_INSTANCE_ID = '<ADD-CONNECT-INSTANCE-ID-HERE>';
             const CONNECT_INSTANCE_ARN = '<ADD-CONNECT-INSTANCE-ARN-HERE>';
             // Availability zones available in the current AWS environment
-
-    :::
-
-1.  Create all the Cloudformation Stack required for the workshop
-    :::code{showCopyAction=true showLineNumbers=false language=typescript }
+    ```
+5.  Create all the Cloudformation Stack required for the workshop
+    ```
     cd aws-connect-data-visualization-using-aurora
 
     chmod 744 script-deploy.sh script-package-lib.sh script-synth.sh script-undeploy.sh
 
     ./script-deploy.sh 
-    :::
+    ```
 
 *Please note that deploying the code may take about an hour to complete*
