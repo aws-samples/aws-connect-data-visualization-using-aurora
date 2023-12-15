@@ -3,6 +3,7 @@
 # Table of Contents
 1. [Overview](#Overview)
 1. [Solution Architecture](#SolutionArchitecture)
+1. [Deployment Steps](#DeploymentSteps)
 
 ## Overview
 [Amazon Connect](https://aws.amazon.com/connect/) provides built-in [reports](https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-metrics.html), however some customers need more flexibility or need to use a Business Intelligence (BI) tool to visualize Amazon Connect data. Customers may also like to use custom calculations that are defined by their business which are not available in the out-of-the-box Amazon Connect Reports. In this workshop, you will learn how to use Amazon Connect APIs along with other Amazon services like [Amazon Aurora](https://aws.amazon.com/rds/aurora/) and [Amazon QuickSight](https://aws.amazon.com/quicksight/) to store Contact Center data and create visualization.
@@ -105,3 +106,10 @@ This workshop utilizes the Amazon Connect API's programmatically using AWS SDK f
 1. **ListAgentStatuses API** retrieve the list of the Agent Status's configured in the Amazon Connect instance. This data is considered as part of Metadata for Amazon Connect in this workshop. More details of the API usage are described [here](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Connect.html#listAgentStatuses-property).
 
 1. **ListUsers API** retrieves the list of users from the Amazon Connect instance. This data is considered as part of Metadata for Amazon Connect in this workshop. More details of the API usage are described [here](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Connect.html#listUsers-property).
+
+<a id="DeploymentSteps"></a>
+## Deployment Steps
+We will follow below steps to set up our workshop: 
+1. Setup sample Contact Center configuration
+1. Setup an [AWS Cloud 9](https://aws.amazon.com/cloud9/) Environment
+1. Deploy the Solution 
