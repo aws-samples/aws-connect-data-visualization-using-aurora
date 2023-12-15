@@ -81,7 +81,7 @@ Any integration with Third Party BI Tool or web interfaces to visualize the data
 1. The API Gateway in turn sends the request to checkDataLoad lambda function which queries the database for updates and return the results.
 
 ### Amazon Connect API Usage 
-This workshop utilizes the Amazon Connect API's programmatically using AWS SDK for JavaScript
+This workshop utilizes the Amazon Connect API's programmatically using AWS SDK for JavaScript:
 
 1. **GetMetricData API** retrieves the historical metrics for Amazon Connect instance. More Details of the API usage is described [here](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Connect.html#getMetricData-property). The data retrieved is stored is stored in the Aurora Database.
     - Some metrics report the average value but do not provide the count that was used to create the average value.  HOLD_TIME is one example.  The API does not report the number of contacts put on hold.  This prevents us from performing a weighted average across intervals.  If weighted averages are important, then you need to use contact trace record data.  Contact trace records provide details about each call (e.g., NumberOfHolds, CustomerHoldDuration). Refer [this workshop](https://studio.us-east-1.prod.workshops.aws/preview/607718a8-cddd-416a-97b4-4fc9dc93ff7a/builds/4b6cffd2-a4f3-49f5-b2d2-70eadada9e95/en-US).
