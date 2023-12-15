@@ -4,6 +4,7 @@
 1. [Overview](#Overview)
 1. [Solution Architecture](#SolutionArchitecture)
 1. [Deployment Steps Overview](#DeploymentStepsOverview)
+1. [Solution Testing](#SolutionTesting)
 
 ## Overview
 [Amazon Connect](https://aws.amazon.com/connect/) provides built-in [reports](https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-metrics.html), however some customers need more flexibility or need to use a Business Intelligence (BI) tool to visualize Amazon Connect data. Customers may also like to use custom calculations that are defined by their business which are not available in the out-of-the-box Amazon Connect Reports. In this workshop, you will learn how to use Amazon Connect APIs along with other Amazon services like [Amazon Aurora](https://aws.amazon.com/rds/aurora/) and [Amazon QuickSight](https://aws.amazon.com/quicksight/) to store Contact Center data and create visualization.
@@ -254,3 +255,28 @@ git clone https://github.com/aws-samples/aws-connect-data-visualization-using-au
     ```
 
 *Please note that deploying the code may take about an hour to complete*
+
+<a id="SolutionTesting"></a>
+## Solution Testing
+- Make test calls using the phone number claimed during contact center setup.
+- Ensure the user is logged into [Contact Control Panel](https://docs.aws.amazon.com/connect/latest/adminguide/launch-ccp.html) to receive calls
+- Ensure you are able to see the data in out of the box Amazon Connect real time reports
+- Follow below steps to check the data is getting inserted into Amazon Aurora.
+    - Launch Amazon API Gateway from AWS management console
+    - In the *find API* search bar type *CheckDataloadApi*
+    - Select *CheckDataloadApi--> Stages--> prod*
+    
+    ![](/images/testing.jpg)
+    - Click on the value of Invoke URL 
+    - Accessing the URL should provide the results:
+        - Name of the table
+        - Row count
+        - Last updated timestamp
+- [Add a new agent](https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html) and login to Contact control panel using new agent's credential.
+  * Invoke the testing URL to ensure  **current_user_data** table is getting updated. 
+- Continue to make test calls on the phone number claimed and validate that **current_metric_data** and **historical_metric_data** are getting updated.
+- For **current_metric_data** the number of rows may remain same if agent is logging-on to the same queue, but you should see an updated lastUpdated timestamp for **current_user_data** ,
+**current_metric_data** and **historical_metric_data**.
+- To ensure the **connect_metadata** table is getting updated. 
+  * Create two new [ Amazon Connect Queues](https://docs.aws.amazon.com/connect/latest/adminguide/create-queue.html) from Amazon Connect Console.
+  * Invoke the testing URL after 15 minutes, to ensure the rowCount value has increased by 2.  
