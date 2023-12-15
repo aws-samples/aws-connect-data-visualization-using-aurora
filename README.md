@@ -3,7 +3,7 @@
 # Table of Contents
 1. [Overview](#Overview)
 1. [Solution Architecture](#SolutionArchitecture)
-1. [Deployment Steps](#DeploymentSteps)
+1. [Deployment Steps Overview](#DeploymentStepsOverview)
 
 ## Overview
 [Amazon Connect](https://aws.amazon.com/connect/) provides built-in [reports](https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-metrics.html), however some customers need more flexibility or need to use a Business Intelligence (BI) tool to visualize Amazon Connect data. Customers may also like to use custom calculations that are defined by their business which are not available in the out-of-the-box Amazon Connect Reports. In this workshop, you will learn how to use Amazon Connect APIs along with other Amazon services like [Amazon Aurora](https://aws.amazon.com/rds/aurora/) and [Amazon QuickSight](https://aws.amazon.com/quicksight/) to store Contact Center data and create visualization.
@@ -107,9 +107,20 @@ This workshop utilizes the Amazon Connect API's programmatically using AWS SDK f
 
 1. **ListUsers API** retrieves the list of users from the Amazon Connect instance. This data is considered as part of Metadata for Amazon Connect in this workshop. More details of the API usage are described [here](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Connect.html#listUsers-property).
 
-<a id="DeploymentSteps"></a>
-## Deployment Steps
+<a id="DeploymentStepsOverview"></a>
+## Deployment Steps Overview
 We will follow below steps to set up our workshop: 
 1. Setup sample Contact Center configuration
 1. Setup an [AWS Cloud 9](https://aws.amazon.com/cloud9/) Environment
-1. Deploy the Solution 
+1. Deploy the Solution
+
+### Deployment Steps
+In this section we will build a sample configuration in Amazon Connect for the solution to produce data for visualization purpose.  We will be following below steps to create the required Amazon Connect Resources: 
+1. Create two Amazon Connect Queues named **Sales** and **Tech Support**. For more information follow [ Amazon Connect Queues](https://docs.aws.amazon.com/connect/latest/adminguide/create-queue.html).
+1. Download the [Connect flow provided](https://github.com/aws-samples/aws-connect-data-visualization-using-aurora/tree/main/src/connect-flows) and save it in your local directory.
+1. Import the Amazon Connect Flow in your Connect instance following the steps mentioned [here](https://docs.aws.amazon.com/connect/latest/adminguide/contact-flow-import-export.html).
+1. Once imported, open the Connect flow and choose the *Set working queue* block to set the **Sales** and **Tech Support** queues in their respective blocks. Choose **Save** and **Publish** to make the Connect flow changes effective.
+1. Associate a Phone number to your Connect flow following these [steps](https://docs.aws.amazon.com/connect/latest/adminguide/tutorial1-assign-contact-flow-to-number.html) and assign it to the Connect flow imported in previous step.
+1. Create a **Routing profile** with the queues created in first step. For more details see how to [create routing profile](https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html).
+1. Create a User with **Routing profile** created above and **Agent** Security Profile. For more details see [Security Profiles](https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html).
+
