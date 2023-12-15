@@ -124,3 +124,97 @@ In this section we will build a sample configuration in Amazon Connect for the s
 1. Create a **Routing profile** with the queues created in first step. For more details see how to [create routing profile](https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html).
 1. Create a User with **Routing profile** created above and **Agent** Security Profile. For more details see [Security Profiles](https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html).
 
+### Create Cloud 9 Environment
+You will create, launch, and configure an [AWS Cloud9](https://aws.amazon.com/cloud9/) environment. To begin the workshop, you will set up a development environment using AWS Cloud9.  The below [AWS CloudFormation](https://aws.amazon.com/cloudformation/) template will configure AWS Cloud9 in an [Amazon Virtual Private Cloud (Amazon VPC)](https://aws.amazon.com/vpc/) with a public subnet.  These are the steps: 
+1. Copy the below template to a file on your local computer (e.g. `cloud9.yaml`)
+1. Sign in to your AWS account
+1. Select the AWS CloudFormation service
+1. Create stack, with new resources
+1. Upload a new template file
+1. Choose the file that you created
+1. Select the *Next* button
+1. Enter `Connect-API-Visualization` for the stack name
+1. Optionally, change the VpcCIDR
+1. Select the *Next* button
+1. Select the *Next* button
+1. Select the *Submit* button
+1. Wait for the stack to finish
+
+![Create AWS Cloud9](images/10_Create.gif) 
+
+```yaml
+Description: This template deploys a VPC with a public subnet.  It will them launch another AWS Cloudformation stack that creates the Cloud9 IDE
+
+Parameters:       
+    VpcCIDR:
+        Description: Please enter the IP range (CIDR notation) for this VPC
+        Type: String
+        Default: 10.0.0.0/24
+
+Resources:
+    VPC:
+        Type: AWS::EC2::VPC
+        Properties:
+            CidrBlock: !Ref VpcCIDR
+            EnableDnsSupport: true
+            EnableDnsHostnames: true
+    
+    InternetGateway:
+        Type: AWS::EC2::InternetGateway
+    
+    InternetGatewayAttachment:
+        Type: AWS::EC2::VPCGatewayAttachment
+        Properties:
+            InternetGatewayId: !Ref InternetGateway
+            VpcId: !Ref VPC
+            
+    PublicSubnet:
+        Type: AWS::EC2::Subnet
+        Properties:
+            VpcId: !Ref VPC
+            AvailabilityZone: !Select [ 0, !GetAZs '' ]
+            CidrBlock: !Ref VpcCIDR
+            MapPublicIpOnLaunch: false
+                
+    PublicRouteTable:
+        Type: AWS::EC2::RouteTable
+        Properties:
+            VpcId: !Ref VPC
+                
+    DefaultPublicRoute:
+        Type: AWS::EC2::Route
+        DependsOn: InternetGatewayAttachment
+        Properties:
+            RouteTableId: !Ref PublicRouteTable
+            DestinationCidrBlock: 0.0.0.0/0
+            GatewayId: !Ref InternetGateway
+            
+    PublicSubnetRouteTableAssociation:
+        Type: AWS::EC2::SubnetRouteTableAssociation
+        Properties:
+            RouteTableId: !Ref PublicRouteTable
+            SubnetId: !Ref PublicSubnet
+            
+    IDE:
+        DependsOn: PublicSubnet
+        Type: AWS::Cloud9::EnvironmentEC2
+        Properties:
+            AutomaticStopTimeMinutes: 60
+            ConnectionType: CONNECT_SSH
+            InstanceType: t2.medium
+            Name: Connect-API-Visualization
+            SubnetId: !Ref PublicSubnet
+            
+Outputs:
+    VPC:
+        Description: A reference to the created VPC
+        Value: !Ref VPC
+    
+    PublicSubnet:
+        Description: A reference to the created public subnet
+        Value: !Ref PublicSubnet
+        
+    Cloud9IDE:
+        Description: A reference to the created Cloud9 environment
+        Value: !Ref IDE
+```
