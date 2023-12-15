@@ -293,43 +293,42 @@ In this section we will configure Amazon QuickSight to visualize historical metr
 1. From the left hand menu under **Access Management** choose **Policies**.
 1. On the left hand side, click on **Create Policy** button.
 1. Choose the **JSON** at the top right and paste the following policy statement in the Policy Editor and Choose **Next**:
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ec2:CreateNetworkInterface",
-                "ec2:ModifyNetworkInterfaceAttribute",
-                "ec2:DeleteNetworkInterface",
-                "ec2:DescribeSubnets",
-                "ec2:DescribeSecurityGroups"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-```
-{:start="4"}
+	```
+	{
+	    "Version": "2012-10-17",
+	    "Statement": [
+	        {
+	            "Effect": "Allow",
+	            "Action": [
+	                "ec2:CreateNetworkInterface",
+	                "ec2:ModifyNetworkInterfaceAttribute",
+	                "ec2:DeleteNetworkInterface",
+	                "ec2:DescribeSubnets",
+	                "ec2:DescribeSecurityGroups"
+	            ],
+	            "Resource": "*"
+	        }
+	    ]
+	}
+	```
 1. Give *workshop-quicksight-vpc-policy* as the name  in the Policy Name field.
 1. Once the policy is created , from the left hand menu under **Access Management** select **Roles**
 1. Click on **Create Role** at the top right corner.
 1. From the list of options select **Custom Trust Policy**. Paste the following statements in the editor.
-```
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Effect": "Allow",
-			"Principal": {
-				"Service": "quicksight.amazonaws.com"
-			},
-			"Action": "sts:AssumeRole"
-		}
-	]
-}
-```
+	```
+	{
+		"Version": "2012-10-17",
+		"Statement": [
+			{
+				"Effect": "Allow",
+				"Principal": {
+					"Service": "quicksight.amazonaws.com"
+				},
+				"Action": "sts:AssumeRole"
+			}
+		]
+	}
+	```
     ![QuickSight Role](/static/quicksight-role.jpg) 
 1. Click on **Next**. In the Permission Policies attach the policy created in the above step  named *workshop-quicksight-vpc-policy*.
 1. Click on **Next**. In the Role Name field give *workshop-quicksight-exec-role* to create the QuickSight execution role.
