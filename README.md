@@ -62,7 +62,7 @@ This workshop can only be run in regions that support Amazon Connect
 ### Out of Scope
 Any integration with Third Party BI Tool or web interfaces to visualize the data are not discussed as part of this workshop
 
-## Solution Architecture <a name="Solution-Architecture"></a>
+## Solution Architecture <a name="Solution-Architecture"></a> 
 - The solution utilizes two types of data:
   - **Metadata**    : Data describes various contact center configuration. 
   - **Metric Data** : Real time and historical data for your contact center metrics.    
