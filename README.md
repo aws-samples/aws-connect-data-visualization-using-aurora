@@ -69,7 +69,7 @@ Any integration with Third Party BI Tool or web interfaces to visualize the data
 1. The lambda function invokes [ListQueues](https://docs.aws.amazon.com/connect/latest/APIReference/API_ListQueues.html), [ListRoutingProfiles](https://docs.aws.amazon.com/connect/latest/APIReference/API_ListRoutingProfiles.html), [ListAgentStatuses](https://docs.aws.amazon.com/connect/latest/APIReference/API_ListAgentStatuses.html), and [ListUsers](https://docs.aws.amazon.com/connect/latest/APIReference/API_ListUsers.html) API's to get the ARN, Name of the connect resource (e.g., queue, agent status, routing profiles).
 1. The data is then stored in an Aurora Database table.
 1. Three different [Amazon Event Bridge](https://aws.amazon.com/eventbridge/) rule invoke three different step functions every one minute.
-1. Each step function invokes a corresponding lambda functions every 10 seconds(6 times in one minute)
+1. Each step function invokes a corresponding lambda functions every 10 seconds(6 times in one minute).
 1. Each lambda function invokes the respective metrics related API's to fetch data from Amazon Connect instance.
 *Exponential Backoff is implemented in the lambda functions to avoid [API throttling](https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#connect-api-quotas)*. The API response are then saved into Aurora database in different tables.
 1. Amazon Quicksight is used to visualize the historical data.
