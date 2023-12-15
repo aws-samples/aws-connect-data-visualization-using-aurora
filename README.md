@@ -228,9 +228,9 @@ Now, launch the new AWS Cloud9 instance:
 1. Open a new terminal in your Cloud 9 IDE
 1. `cd ~/environment/`
 1. Download the code from Git repository
-```git clone https://github.com/aws-samples/aws-connect-data-visualization-using-aurora.git```
-
-
+```
+git clone https://github.com/aws-samples/aws-connect-data-visualization-using-aurora.git
+```
 1. Modify File
     - Retrieve your Amazon Connect Instance Id and ARN as shown [here](https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
     - Navigate to stack-main.ts file (*/src/stack/infra/stack-main.ts*) and edit it to have the correct Amazon Connect instance ID and instance ARN.
