@@ -6,7 +6,7 @@
 1. [Deployment Steps Overview](#DeploymentStepsOverview)
 1. [Solution Testing](#SolutionTesting)
 1. [Data Visualization of the Metrics](#DataVisualizationMetrics)
-## 
+1. [Cleanup Steps](#CleanupSteps)
 
 ## Overview
 [Amazon Connect](https://aws.amazon.com/connect/) provides built-in [reports](https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-metrics.html), however some customers need more flexibility or need to use a Business Intelligence (BI) tool to visualize Amazon Connect data. Customers may also like to use custom calculations that are defined by their business which are not available in the out-of-the-box Amazon Connect Reports. In this workshop, you will learn how to use Amazon Connect APIs along with other Amazon services like [Amazon Aurora](https://aws.amazon.com/rds/aurora/) and [Amazon QuickSight](https://aws.amazon.com/quicksight/) to store Contact Center data and create visualization.
@@ -392,7 +392,65 @@ In this section we will visualize historical metrics extracted from Amazon Conne
 Once confirmed that contact center data is getting stored in Amazon Aurora, you can choose BI tool of your choice to build real time visualization which support automatic refresh.
 
 QuickSight is not a good fit for real time dashboards:
-* SPICE (Enterprise edition only) supports hourly refresh.
-* SPICE supports manually refresh (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateIngestion.html) but you are limited to 32 times in a 24 hour period.  If your contact center is open 8 hours per day, then you can get a 15 minute refresh rate.
+    - SPICE (Enterprise edition only) supports hourly refresh.
+    - SPICE supports manually refresh (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateIngestion.html) but you are limited to 32 times in a 24 hour period.  If your contact center is open 8 hours per day, then you can get a 15 minute refresh rate.
 
 Our recommendation is to build a front-end web application to show real-time metrics data.
+
+<a id="CleanupSteps"></a>
+## Cleanup Steps
+Follow these steps to remove the resources created during this workshop:
+1. If you are using Amazon QuickSight in your account you can cleanup following below steps:
+    - Launch Amazon QuickSight.
+    - From the left hand sidebar menu choose **Datasets**.
+    - Click on three dots (...) against the dataset created as part of this workshop (historical_metric_data) and click on **Delete**.
+    - From the left hand sidebar menu choose **Analyses**.
+    - Click on three dots (...) against the analysis created as part of this workshop (historical_metric_data_analysis) and click on **Delete**.
+    - Select User Icon at the top left corner.
+    - Select Manage QuickSight.
+    - Select Manage VPC connections.
+    - Delete the VPC connection (Connect-workshop-vpc) added as part of this workshop.
+1. If you subscribed to QuickSight only for this workshop you can delete QuickSight following these steps:
+    - Launch Amazon QuickSight from AWS management console.
+    - Select User Icon at the top left.
+    - Select Manage QuickSight.
+    - Select Account settings.
+    - Select Manage under Account termination.
+    - Turn off Account termination protection.
+    - Enter confirm.
+    - Select Delete account.
+1. Delete following Cloudformation Stack from the Cloudformation service in AWS management console.
+    - Connect-API-Visualization.  This will also delete aws-cloud9-Connect-API-Visualization-XXX
+    - aws-connect-workshop-check-dataload
+    - aws-connect-workshop-user-data
+    - aws-connect-workshop-connect-metrics
+    - aws-connect-workshop-connect-metadata
+    - aws-connect-workshop-aurora-db-setup
+    - aws-connect-workshop-aurora.  This will also delete aws-connect-workshop-aurora-AuroraServerlessClusterRotationSingleUserXXX
+    - aws-connect-workshop-infra.  This will fail because the S3 bucket is not empty.  Delete it again but retain VpcFlowlogBucketXXX.  This will be deleted in the next section
+    - aws-connect-workshop-common-lib
+    - CDKToolkit
+1. Remove Amazon Connect if you created a new instance
+1. Delete S3 buckets
+    - aws-connect-workshop-inf-vpcflowlogbuccketXXX
+        - You need to disable server access logging first to prevent the creation of new files     
+    - cdk-hnb659fds-assets-{AWS account number}-{AWS region}
+    - S3 bucket associated with the Amazon Connect instance.  See step 4
+1.  Delete Amazon CloudWatch log groups
+    - /aws/apigateway/welcome
+    - /aws/lambda/ServerlessStackAuroraServerlessClusterRotationSingleUserXXX
+    - /aws/lambda/aws-connect-workshop-auro-AuroraDbSetUpLambdaXXX
+    - /aws/lambda/aws-connect-workshop-chec-CheckDataloadLambdaXXX
+    - /aws/lambda/aws-connect-workshop-conn-JobInvocationLambdaXXX
+    - /aws/lambda/aws-connect-workshop-conn-PullConnectMetadataLamba-XXX
+    - /aws/lambda/aws-connect-workshop-conn-PullCurrentMetricsLambda-XXX
+    - /aws/lambda/aws-connect-workshop-conn-PullHistoricalMetricsLam-XXX
+    - /aws/lambda/aws-connect-workshop-user-JobInvocationLambdaXXX
+    - /aws/lambda/aws-connect-workshop-user-PullCurrentUserDataLambd-XXX
+    - /aws/rds/proxy/auroraproxy
+    - aws-connect-workshop-check-dataload-ApiGatewayAccessLogsXXX
+    - aws-connect-workshop-connect-metrics-MetricCollectionStepFnLogGrpXXX
+    - aws-connect-workshop-user-data-UserDataCollectionStepFnLogGrpXXX
+    - Log group associated with the Amazon Connect instance.  See step 4
+1. Delete the RDS snapshot
+    - aws-connect-workshop-aurora-snapshot-auroraserverlessclusterXXX
