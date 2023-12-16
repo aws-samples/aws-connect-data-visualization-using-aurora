@@ -363,3 +363,27 @@ In this section we will configure Amazon QuickSight to visualize historical metr
     - password
 
 ![Secret Value](/images/secret-values.jpg)
+
+### Historical Metric View
+In this section we will visualize historical metrics extracted from Amazon Connect API:
+1. From AWS Management Console and Launch Amazon QuickSight.
+1. From the left-hand sidebar  select **Datasets** and then click **New dataset** from the top left corner.
+1. From the list of data sources select **Aurora**.
+1. Give Data source a name e.g. Historical Data Visualization
+![QuickSight Param](/images/quicksight.jpg) 
+1. Select the VPC added as part of the QuickSight setup.
+1. In the Database Connector choose **MySQL**.
+1. Enter Database Server (Aurora host), port, Database name, Username, Password captured from the AWS Secret manager, and click on **Validate connection**.
+1. Once **Validated** click on **Create data source**.
+1. Choose **historical_metric_data** table and click **Edit/Preview Data**
+![Table](/image/choose-table.jpg) 
+1. Once preview opens, click on the **+** icon at the top to add two calculated fields start_date and end_date as shown:
+![Add calculated fields](/simages/add_calculated_field.jpg) 
+1. start_date and end_date should look like:
+![Formula](/image/formula.jpg)
+1. If you scroll to the end you should be able to see the two new fields added.
+1. Click on **Publish & Visualize** to create a visualization.
+![Publish & Visualize](/images/publish_visualize.jpg) 
+1. Click on **Create** to create a new sheet.
+1. Choose **Vertical Bar Chart**.Drag and drop end_date field for X axis and a few metrics in the value box as shown in the picture:
+![Visualize](/images/visualization.jpg) 
