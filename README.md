@@ -7,6 +7,7 @@
 1. [Solution Testing](#SolutionTesting)
 1. [Data Visualization of the Metrics](#DataVisualizationMetrics)
 1. [Cleanup Steps](#CleanupSteps)
+1. [Additional Resources](#AdditionalResources)
 
 ## Overview
 [Amazon Connect](https://aws.amazon.com/connect/) provides built-in [reports](https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-metrics.html), however some customers need more flexibility or need to use a Business Intelligence (BI) tool to visualize Amazon Connect data. Customers may also like to use custom calculations that are defined by their business which are not available in the out-of-the-box Amazon Connect Reports. In this workshop, you will learn how to use Amazon Connect APIs along with other Amazon services like [Amazon Aurora](https://aws.amazon.com/rds/aurora/) and [Amazon QuickSight](https://aws.amazon.com/quicksight/) to store Contact Center data and create visualization.
@@ -454,3 +455,11 @@ Follow these steps to remove the resources created during this workshop:
     - Log group associated with the Amazon Connect instance.  See step 4
 1. Delete the RDS snapshot
     - aws-connect-workshop-aurora-snapshot-auroraserverlessclusterXXX
+
+<a id="AdditionalResources"></a>
+## Additional Resources
+1. If you do not have an AWS Account and/or an Amazon Connect instance, you may follow this [workshop](https://catalog.workshops.aws/amazon-connect-bootcamp/en-US)  to create one.
+1. You can follow [Module 1 of the Amazon Connect Bootcamp workshop](https://catalog.workshops.aws/amazon-connect-bootcamp/en-US/module1) to create a basic flow. The workshop details step by step on how to claim a phone number, create Queues, Routing Profile to set up a basic Amazon Connect flow.
+1. Details about various Amazon Connect data sources can be found in our [Visualize Amazon Connect Contact Trace Records Using Amazon QuickSight](https://catalog.workshops.aws/amazon-connect-visualization/en-US#amazon-connect-data-sources) workshop.
+1. If you require to observe each and every event from your Amazon Connect instance, then look at the [Visualize Amazon Connect Contact Trace Records Using Amazon QuickSight](https://catalog.workshops.aws/amazon-connect-visualization/en-US) workshop.
+1. To know availability of Amazon Connect services by region follow [Amazon Connect services by region](https://docs.aws.amazon.com/connect/latest/adminguide/regions.html).
