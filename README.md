@@ -387,3 +387,12 @@ In this section we will visualize historical metrics extracted from Amazon Conne
 1. Click on **Create** to create a new sheet.
 1. Choose **Vertical Bar Chart**.Drag and drop end_date field for X axis and a few metrics in the value box as shown in the picture:
 ![Visualize](/images/visualization.jpg) 
+
+### Realtime Metrics Visualization
+Once confirmed that contact center data is getting stored in Amazon Aurora, you can choose BI tool of your choice to build real time visualization which support automatic refresh.
+
+QuickSight is not a good fit for real time dashboards:
+* SPICE (Enterprise edition only) supports hourly refresh.
+* SPICE supports manually refresh (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateIngestion.html) but you are limited to 32 times in a 24 hour period.  If your contact center is open 8 hours per day, then you can get a 15 minute refresh rate.
+
+Our recommendation is to build a front-end web application to show real-time metrics data.
