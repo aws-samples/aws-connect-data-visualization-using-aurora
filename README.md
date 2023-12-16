@@ -463,3 +463,8 @@ Follow these steps to remove the resources created during this workshop:
 1. Details about various Amazon Connect data sources can be found in our [Visualize Amazon Connect Contact Trace Records Using Amazon QuickSight](https://catalog.workshops.aws/amazon-connect-visualization/en-US#amazon-connect-data-sources) workshop.
 1. If you require to observe each and every event from your Amazon Connect instance, then look at the [Visualize Amazon Connect Contact Trace Records Using Amazon QuickSight](https://catalog.workshops.aws/amazon-connect-visualization/en-US) workshop.
 1. To know availability of Amazon Connect services by region follow [Amazon Connect services by region](https://docs.aws.amazon.com/connect/latest/adminguide/regions.html).
+
+## Contributors
+- Troy Evarts - Senior Consultant, Amazon Connect
+- Damodar Shenvi Wagle -  Senior Cloud Application Architect
+- Harshvardhan Bhatt - Consultant, Amazon Connect
