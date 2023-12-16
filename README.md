@@ -376,11 +376,11 @@ In this section we will visualize historical metrics extracted from Amazon Conne
 1. Enter Database Server (Aurora host), port, Database name, Username, Password captured from the AWS Secret manager, and click on **Validate connection**.
 1. Once **Validated** click on **Create data source**.
 1. Choose **historical_metric_data** table and click **Edit/Preview Data**
-![Table](/image/choose-table.jpg) 
+![Table](/images/choose-table.jpg) 
 1. Once preview opens, click on the **+** icon at the top to add two calculated fields start_date and end_date as shown:
-![Add calculated fields](/simages/add_calculated_field.jpg) 
+![Add calculated fields](/images/add_calculated_field.jpg) 
 1. start_date and end_date should look like:
-![Formula](/image/formula.jpg)
+![Formula](/images/formula.jpg)
 1. If you scroll to the end you should be able to see the two new fields added.
 1. Click on **Publish & Visualize** to create a visualization.
 ![Publish & Visualize](/images/publish_visualize.jpg) 
