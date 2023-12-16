@@ -347,3 +347,19 @@ In this section we will configure Amazon QuickSight to visualize historical metr
    ![QuickSight Add VPC](/images/quicksight-add-vpc.jpg) 
 1. Before proceeding to the next steps ensure the VPC connection is in Available state as shown:
     ![QuickSight Add VPC](/images/quicksight-vpc-status.jpg) 
+
+### Aurora QuickSight Integration
+1. Before we integrate Quicksight with Aurora we will need the credential to connect to Aurora.
+1. Open AWS Management Console and Launch **AWS Secrets Manager**.
+1. Open the secret created by the workshop.
+1. Click on **Retrieve secret value** as show below:
+![Retrieve Secret](/images/aurora-secrets.jpg) 
+1. Note down the values of the secret key/value pair because these values will be used in QuickSight to set up the connection:
+    - host
+    - port
+    - dbname
+    - engine
+    - username
+    - password
+
+![Secret Value](/images/secret-values.jpg)
