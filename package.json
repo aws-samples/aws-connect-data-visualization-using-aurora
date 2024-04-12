@@ -38,7 +38,7 @@
 		"aws-sdk": "^2.1189.0",
 		"cfn-response": "^1.0.1",
 		"commander": "^7.1.0",
-		"mysql2": "^3.1.0",
+		"mysql2": "^3.9.4",
 		"source-map-support": "^0.5.16",
 		"uuid": "^8.3.2"
 	},
