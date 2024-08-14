@@ -28,12 +28,12 @@ cd ../
 touch package.json
 echo '{
   "dependencies": {
-    "@aws-sdk/client-connect": "^3.142.0",
-    "@aws-sdk/client-lambda": "^3.267.0",
-    "@aws-sdk/rds-signer": "^3.263.0",
-    "cfn-response": "^1.0.1",
-    "uuid": "^8.3.2",
-    "mysql2": "^3.1.0"
+    "@aws-sdk/client-connect": "3.421.0",
+    "@aws-sdk/client-lambda": "3.421.0",
+    "@aws-sdk/rds-signer": "3.422.1",
+    "cfn-response": "1.0.1",
+    "uuid": "9.0.1",
+    "mysql2": "3.6.1"
   }
 }' > package.json
 cd node_modules
